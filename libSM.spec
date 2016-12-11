@@ -4,12 +4,12 @@
 #
 Name     : libSM
 Version  : 1.2.2
-Release  : 6
+Release  : 7
 URL      : http://xorg.freedesktop.org/releases/individual/lib/libSM-1.2.2.tar.gz
 Source0  : http://xorg.freedesktop.org/releases/individual/lib/libSM-1.2.2.tar.gz
 Summary  : X Session Management Library
 Group    : Development/Tools
-License  : MIT
+License  : MIT-Opengroup
 Requires: libSM-lib
 Requires: libSM-doc
 BuildRequires : libxslt-bin
@@ -28,6 +28,7 @@ Xorg mailing list:
 Summary: dev components for the libSM package.
 Group: Development
 Requires: libSM-lib
+Provides: libSM-devel
 
 %description dev
 dev components for the libSM package.
@@ -53,10 +54,15 @@ lib components for the libSM package.
 %setup -q -n libSM-1.2.2
 
 %build
+export LANG=C
 %configure --disable-static
-make V=1 %{?_smp_mflags}
+make V=1  %{?_smp_mflags}
 
 %check
+export LANG=C
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
@@ -71,8 +77,8 @@ rm -rf %{buildroot}
 /usr/include/X11/SM/SM.h
 /usr/include/X11/SM/SMlib.h
 /usr/include/X11/SM/SMproto.h
-/usr/lib64/*.so
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/libSM.so
+/usr/lib64/pkgconfig/sm.pc
 
 %files doc
 %defattr(-,root,root,-)
@@ -80,4 +86,5 @@ rm -rf %{buildroot}
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/*.so.*
+/usr/lib64/libSM.so.6
+/usr/lib64/libSM.so.6.0.1
