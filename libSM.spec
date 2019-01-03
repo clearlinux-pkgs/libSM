@@ -6,7 +6,7 @@
 #
 Name     : libSM
 Version  : 1.2.3
-Release  : 12
+Release  : 13
 URL      : http://xorg.freedesktop.org/releases/individual/lib/libSM-1.2.3.tar.gz
 Source0  : http://xorg.freedesktop.org/releases/individual/lib/libSM-1.2.3.tar.gz
 Source99 : http://xorg.freedesktop.org/releases/individual/lib/libSM-1.2.3.tar.gz.sig
